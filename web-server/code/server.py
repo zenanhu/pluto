@@ -25,6 +25,28 @@ class CaseExistingFile(object):
         handler.handle_file(handler.full_path)
 
 
+class CaseDirectoryIndexFile(object):
+    def index_path(self, handler):
+        return os.path.join(handler.full_path, 'index.html')
+
+    def test(self, handler):
+        return os.path.isdir(handler.full_path) and os.path.isfile(self.index_path(handler))
+
+    def act(self, handler):
+        handler.handle_file(self.index_path(handler))
+
+
+class CaseDirectoryNoIndexFile(object):
+    def index_path(self, handler):
+        return os.path.join(handler.full_path, 'index.html')
+
+    def test(self, handler):
+        return os.path.isdir(handler.full_path) and not os.path.isfile(self.index_path(handler))
+
+    def act(self, handler):
+        handler.list_dir(handler.full_path)
+
+
 class CaseAlwaysFail(object):
     def test(self, handler):
         return True
@@ -58,16 +80,30 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 </html>
 """
 
-    Cases = [CaseNoFile, CaseExistingFile, CaseAlwaysFail]
+    Listing_Page = '''
+<html>
+<body>
+    <ul>
+        {0}
+    </ul>
+</body>
+</html>
+'''
+    Cases = [
+        CaseNoFile(),
+        CaseExistingFile(),
+        CaseDirectoryIndexFile(),
+        CaseDirectoryNoIndexFile(),
+        CaseAlwaysFail()
+    ]
 
     def do_GET(self):
         try:
             self.full_path = os.getcwd() + self.path
 
             for case in self.Cases:
-                handler = case()
-                if handler.test(self):
-                    handler.act(self)
+                if case.test(self):
+                    case.act(self)
                     break
         except Exception as msg:
             self.handle_error(msg)
@@ -84,6 +120,16 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     def handle_error(self, msg):
         content = self.Error_Page.format(path=self.path, msg=msg)
         self.send_page(content, status=404)
+
+    def list_dir(self, full_path):
+        try:
+            entries = os.listdir(full_path)
+            bullets = ["<li>{0}<li>".format(e) for e in entries if not e.startswith('.')]
+            page = self.Listing_Page.format('\n'.join(bullets))
+            self.send_page(page)
+        except OSError as msg:
+            msg = "'{0}' cannot be listed: {1}".format(self.path, msg)
+            self.handle_error(msg)
 
     def create_page(self):
         values = {
