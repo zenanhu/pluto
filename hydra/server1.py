@@ -1,3 +1,5 @@
+import errno
+import signal
 import os
 import socket
 import time
@@ -5,6 +7,10 @@ import time
 
 SERVER_ADDRESS = (HOST, PORT) = '', 8888
 REQUEST_QUEUE_SIZE = 5
+
+
+def grim_reaper(signum, frame):
+    pid, status = os.wait()
 
 
 def handle_request(client_connection):
@@ -17,7 +23,7 @@ HTTP/1.1 200 OK
 Hello World!
 '''
     client_connection.sendall(http_response)
-    time.sleep(60)
+    time.sleep(3)
 
 
 def serve_forever():
@@ -28,8 +34,18 @@ def serve_forever():
     print 'Serving HTTP on port {port} ...'.format(port=PORT)
     print 'Parent PID (PPID): {pid}\n'.format(pid=os.getpid())
 
+    signal.signal(signal.SIGCHLD, grim_reaper)
+
     while True:
-        client_connection, client_address = listen_socket.accept()
+        try:
+            client_connection, client_address = listen_socket.accept()
+        except IOError as e:
+            code, msg = e.args
+            if code == errno.EINTR:
+                continue
+            else:
+                raise
+
         pid = os.fork()
         if pid == 0:
             listen_socket.close()
