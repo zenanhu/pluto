@@ -6,11 +6,20 @@ import time
 
 
 SERVER_ADDRESS = (HOST, PORT) = '', 8888
-REQUEST_QUEUE_SIZE = 5
+REQUEST_QUEUE_SIZE = 1024
 
 
 def grim_reaper(signum, frame):
-    pid, status = os.wait()
+    while True:
+        try:
+            pid, status = os.waitpid(
+                -1,
+                os.WNOHANG,
+            )
+        except OSError:
+            return
+        if pid == 0:
+            return
 
 
 def handle_request(client_connection):
