@@ -1,15 +1,32 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+import errno
 import socket
 import StringIO
 import sys
+import time
+import signal
+import os
+
+
+def grim_reaper(signum, frame):
+    while True:
+        try:
+            pid, status = os.waitpid(
+                -1,
+                os.WNOHANG,
+            )
+        except OSError:
+            return
+        if pid == 0:
+            return
 
 
 class WSGIServer(object):
     address_family = socket.AF_INET
     socket_type = socket.SOCK_STREAM
-    request_queue_size = 1
+    request_queue_size = 1024
 
     def __init__(self, server_address):
         self.listen_socket = listen_socket = socket.socket(
@@ -27,9 +44,25 @@ class WSGIServer(object):
         self.application = application
 
     def serve_forever(self):
+        signal.signal(signal.SIGCHLD, grim_reaper)
+
         while True:
-            self.client_connection, client_address = self.listen_socket.accept()
-            self.handle_one_request()
+            try:
+                self.client_connection, client_address = self.listen_socket.accept()
+            except IOError as e:
+                code, msg = e.args
+                if code == errno.EINTR:
+                    continue
+                else:
+                    raise
+            pid = os.fork()
+            if pid == 0:  # Child process
+                self.listen_socket.close()
+                self.handle_one_request()
+                os._exit(0)
+            else:
+                self.client_connection.close()
+
 
     def handle_one_request(self):
         self.request_data = request_data = self.client_connection.recv(1024)
@@ -81,6 +114,7 @@ class WSGIServer(object):
             print ''.join('> {line}\n'.format(line=line) for line in response.splitlines())
             self.client_connection.sendall(response)
         finally:
+            time.sleep(3)
             self.client_connection.close()
 
 
