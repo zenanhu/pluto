@@ -31,8 +31,11 @@ class Interpreter(object):
         current_char = self.text[self.pos]
 
         if current_char.isdigit():
-            self.pos += 1
-            return Token(INTEGER, int(current_char))
+            left = self.pos
+            while self.pos < len(self.text) and self.text[self.pos].isdigit():
+                self.pos += 1
+            value = int(self.text[left:self.pos])
+            return Token(INTEGER, value)
 
         if current_char == '+':
             self.pos += 1
