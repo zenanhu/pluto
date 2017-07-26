@@ -27,6 +27,9 @@ class Interpreter(object):
     def get_next_token(self):
         if self.pos >= len(self.text):
             return Token(EOF, None)
+        if self.text[self.pos] == ' ':
+            self.pos += 1
+            return self.get_next_token()
 
         current_char = self.text[self.pos]
 
