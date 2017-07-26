@@ -1,5 +1,5 @@
 
-INTEGER, PLUS, EOF = 'INTEGER', 'PLUS', 'EOF'
+INTEGER, PLUS, SUBTRACT, EOF = 'INTEGER', 'PLUS', 'SUBTRACT', 'EOF'
 
 
 class Token(object):
@@ -44,6 +44,10 @@ class Interpreter(object):
             self.pos += 1
             return Token(PLUS, current_char)
 
+        if current_char == '-':
+            self.pos += 1
+            return Token(SUBTRACT, current_char)
+
         self.error()
 
     def eat(self, token_type):
@@ -59,12 +63,15 @@ class Interpreter(object):
         self.eat(INTEGER)
 
         op = self.current_token
-        self.eat(PLUS)
+        self.eat(op.type)
 
         right = self.current_token
         self.eat(INTEGER)
 
-        result = left.value + right.value
+        if op.type == PLUS:
+            result = left.value + right.value
+        elif op.type == SUBTRACT:
+            result = left.value - right.value
         return result
 
 
