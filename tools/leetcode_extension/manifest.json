@@ -1,0 +1,19 @@
+{
+  "name": "LCE",
+  "description" : "Hide locked items",
+  "version": "1.0",
+  "browser_action": {
+    "default_icon": "hello_extensions.png"
+  },
+  "manifest_version": 2,
+  "background": {
+    "scripts": [ "background.js" ]
+  },
+
+ "content_scripts": [ {
+    "js": [ "js/jquery-3.2.1.min.js", "js/index.js" ],
+    "matches": [ "https://leetcode.com/*", "https://leetcode-cn.com/*" ]
+ } ],
+ "permissions": [ "declarativeContent", "*://*.leetcode.com/*", "*://*.leetcodechina.com/*", "*://*.leetcode-cn.com/*"],
+ "update_url": "https://clients2.google.com/service/update2/crx"
+}
