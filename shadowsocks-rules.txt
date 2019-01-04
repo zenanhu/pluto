@@ -1,0 +1,35 @@
+! Put user rules line by line in this file.
+! See https://adblockplus.org/en/filter-cheatsheet
+
+||w3schools.com
+||slack.com
+||v2ex.com
+||glowing.com
+||vultr.com
+||google.com
+||googleapi.com
+||jsfiddle.net
+||stackoverflow.com
+||tinypng.com
+||bing.com
+||inbox.google.com
+||zeplin.io
+||github.com
+||getbootstrap.com
+||pinterest.com
+||vuetifyjs.com
+||android.com
+||gstatic.com
+||google-analytics.com
+||ruslanspivak.com
+||leetcode.com
+||firebaseio.com
+||reddit.com
+||redditstatic.com
+||www.redditstatic.com
+||dev.to
+||developer.mozilla.org
+||ngrok.io
+||docs.sqlalchemy.org
+||www.sqlalchemy.org
+||sqlalchemy.org
