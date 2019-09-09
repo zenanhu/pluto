@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+
 import xyz.zenan.sample.googleiab.util.*;
 
 import java.util.ArrayList;
@@ -240,8 +241,7 @@ public class MainActivity extends Activity implements IabBroadcastReceiver.IabBr
         String payload = "";
 
         try {
-            mHelper.launchPurchaseFlow(this, SKU_GAS, RC_REQUEST,
-                    mPurchaseFinishedListener, payload);
+            mHelper.launchPurchaseFlow(this, SKU_GAS, RC_REQUEST, mPurchaseFinishedListener, payload);
         } catch (IabHelper.IabAsyncInProgressException e) {
             complain("Error launching purchase flow. Another async operation in progress.");
             setWaitScreen(false);
@@ -493,7 +493,8 @@ public class MainActivity extends Activity implements IabBroadcastReceiver.IabBr
     // Drive button clicked. Burn gas!
     public void onDriveButtonClicked(View arg0) {
         Log.d(TAG, "Drive button clicked.");
-        if (!mSubscribedToInfiniteGas && mTank <= 0) alert("Oh, no! You are out of gas! Try buying some!");
+        if (!mSubscribedToInfiniteGas && mTank <= 0)
+            alert("Oh, no! You are out of gas! Try buying some!");
         else {
             if (!mSubscribedToInfiniteGas) --mTank;
             saveData();
