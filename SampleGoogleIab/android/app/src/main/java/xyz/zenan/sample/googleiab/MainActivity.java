@@ -480,7 +480,7 @@ public class MainActivity extends Activity implements IabBroadcastReceiver.IabBr
                 Log.d(TAG, "Consumption successful. Provisioning.");
                 mTank = mTank == TANK_MAX ? TANK_MAX : mTank + 1;
                 saveData();
-                alert("You filled 1/4 tank. Your tank is now " + String.valueOf(mTank) + "/4 full!");
+                alert("You filled 1/4 tank. Your tank is now " + mTank + "/4 full!");
             } else {
                 complain("Error while consuming: " + result);
             }
@@ -577,12 +577,12 @@ public class MainActivity extends Activity implements IabBroadcastReceiver.IabBr
         SharedPreferences.Editor spe = getPreferences(MODE_PRIVATE).edit();
         spe.putInt("tank", mTank);
         spe.apply();
-        Log.d(TAG, "Saved data: tank = " + String.valueOf(mTank));
+        Log.d(TAG, "Saved data: tank = " + mTank);
     }
 
     void loadData() {
         SharedPreferences sp = getPreferences(MODE_PRIVATE);
         mTank = sp.getInt("tank", 2);
-        Log.d(TAG, "Loaded data: tank = " + String.valueOf(mTank));
+        Log.d(TAG, "Loaded data: tank = " + mTank);
     }
 }
