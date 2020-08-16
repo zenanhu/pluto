@@ -229,3 +229,50 @@ section#content .project.disappear span {
     font-size: 14px;
     text-align: center;
 }
+
+
+  
+.artboard {
+  position: fixed;
+  margin: auto;
+  width: 100%;
+  height: 50px;
+  bottom: 0;
+  text-align: center;
+}
+.artboard svg rect#wheel {
+  animation: move 2500ms ease-out 0s infinite normal forwards running;
+}
+.artboard svg polyline {
+  opacity: 0;
+}
+.artboard svg polyline#arrow-1 {
+  animation: move_fade 2500ms ease-out 0s infinite normal forwards running;
+}
+.artboard svg polyline#arrow-2 {
+  animation: move_fade 2500ms ease-out 1250ms infinite normal forwards running;
+}
+
+@keyframes move {
+  0% {
+    transform: translatey(0px);
+  }
+  50%,100% {
+    transform: translatey(2px);
+  }
+}
+@keyframes move_fade {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: .8;
+  }
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translatey(12px);
+  }
+}
