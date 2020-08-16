@@ -276,3 +276,17 @@ section#content .project.disappear span {
     transform: translatey(12px);
   }
 }
+
+  
+.text-skip {
+  position: fixed;
+  margin: auto;
+  height: 50px;
+  bottom: 0;
+  right: 50px;
+  text-align: center;
+}
+
+.text-skip:hover {
+    cursor: pointer;
+}
