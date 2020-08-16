@@ -1,0 +1,128 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>Yiting Liu †_º Portfolio</title>
+
+    <link rel="stylesheet" href="./css/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container-head">
+      <a href="/" class="logo">Líu, Yìtíng</a>
+      <div class="container-head-links">
+          <a href="http://www.yitingliu.xyz" class="head-link" id="all-projects" onmouseover="chbg('about-me', 'rgb(51,51,51,0.24)')" onmouseout="chbg('about-me', 'rgb(51,51,51,1)')">All projects</a>
+          <a href="./welcome.html" class="head-link about-me" id="about-me" onmouseover="chbg('all-projects', 'rgb(51,51,51,0.24)')" onmouseout="chbg('all-projects', 'rgb(51,51,51,1)')">About me</a>
+      </div>
+    </div>
+    <div class="container-body">
+        <div class="container">
+            <section id="content">
+                <div class="project active">
+                    <div class="col-left">
+                        <p class="tag-text">0-New York, USA</p>
+                        <p class="title-text">Top of the Rock Observation Deck</p>
+                        <p class="des-text">The deck, as it's known, includes three floors, located on the 67th, 69th, and 70th floors. Indoor and outdoor viewing spaces offer spectacular views by day or night.</p>
+                        <span style="display: flex;"><a href="./welcome.html" class="view-case-study">View case study</a></span>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="col-left">
+                        <p class="tag-text">1-London, UK</p>
+                        <p class="title-text">Buckingham Palace</p>
+                        <p class="des-text">Visit the official London residence of the Queen during the Buckingham Palace summer opening. Explore the extravagant State Rooms and don't miss this year's special exhibition, celebrating the 200th anniversary of the birth of Queen Victoria.</p>
+                        <span style="display: flex;"><a href="https://www.google.com" class="view-case-study">View case study</a></span>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="col-left">      
+                        <p class="tag-text">2-Shanghai, China</p>
+                        <p class="title-text">Shanghai's Promenade: The Bund</p>
+                        <p class="des-text">Best known by its Anglo-Indian name of Bund (Wàitan), the Zhongshan Lu is a lovely broad promenade running along the west bank of the Huangpujiang River.</p>
+                        <span style="display: flex;"><a href="https://www.google.com" class="view-case-study">View case study</a></span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="artboard">
+        <svg width="14px" height="38px" viewBox="0 0 14 38">
+            <rect stroke="#333333" x="1" fill="none" y="1" width="12" height="20" rx="6"></rect>
+            <rect id="wheel" fill="#333333" x="6" y="5" width="2" height="4" rx="1"></rect>
+            <polyline id="arrow-1" stroke="#333333" fill="none" stroke-linecap="round" stroke-linejoin="round" points="3 23 7 26 11 23"></polyline>
+            <polyline id="arrow-2" stroke="#333333" fill="none" stroke-linecap="round" stroke-linejoin="round" points="3 23 7 26 11 23"></polyline>
+        </svg>
+    </div>
+    <script>
+        function chbg(eleId, color) {
+            document.getElementById(eleId).style.color = color;
+        } 
+
+        (function() {
+
+var projects=document.getElementsByClassName("project");
+var projectCount = projects.length;
+
+window.addEventListener('load',load);
+window.addEventListener('wheel',throttle(scroll, 2000));
+
+
+var index=0; //new project count
+var pIndex; //previous project count
+
+function load() {
+  var tag=document.getElementsByClassName("tag-text");
+  var title=document.getElementsByClassName("title-text");
+  var des=document.getElementsByClassName("des-text");
+  var viewCaseStudy=document.getElementsByClassName("view-case-study");
+  pIndex=tag.length-1;
+  for(var i=0; i < projectCount; i++){
+    tag[i].innerHTML=addSpan(tag[i].innerHTML);
+    title[i].innerHTML=addSpan(title[i].innerHTML);
+    des[i].innerHTML=addSpan(des[i].innerHTML);
+  }
+}
+
+function addSpan(str){
+  var strArray=str.split(" ");
+  var newStr='';
+  for(var i=0;i<strArray.length;i++){
+    var newStr = newStr+"<span>"+strArray[i]+"</span> ";
+  }
+  return newStr;
+}
+
+function updateProject(){
+  projects[index].classList.add("active");
+  projects[pIndex].classList.remove("active");
+  projects[pIndex].classList.add("disappear");
+  setTimeout(function(){
+    projects[pIndex].classList.remove("disappear");
+  },1500);
+}
+
+function throttle(fn, wait) {
+  var time = Date.now();
+  return function() {
+    if ((time + wait - Date.now()) < 0) {
+      fn();
+      time = Date.now();
+    }
+  }
+}
+
+function scroll(){
+  pIndex = index;
+  if(index < projects.length-1) index++;
+  else index=0;
+  updateProject();
+}
+
+        })();
+
+    </script>
+  </body>
+</html>
