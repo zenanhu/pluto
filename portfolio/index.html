@@ -16,7 +16,7 @@
     <div class="container-body">
         <div class="container">
             <section id="content">
-                <div class="project active" style="top: 35%;">
+                <div class="project" style="top: 35%;">
                     <div class="col-left">
                         <div class="container-text">
                         <p class="tag-text">0-New York, USA</p>
@@ -71,8 +71,10 @@ function load() {
     tag[i].innerHTML=addSpan(tag[i].innerHTML);
     title[i].innerHTML=addSpan(title[i].innerHTML);
   }
-//   index = projectCount - 1;
-  repeat();
+  setTimeout(function(){
+    projects[0].classList.add("active");
+    repeat();
+  }, 200);
 }
 
 function repeat() {

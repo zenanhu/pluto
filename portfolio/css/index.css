@@ -121,43 +121,36 @@ section#content .project .col-left {
     align-items: center;
     width: 100%;
 }
-
 section#content .project span {
-    display: inline-block;
-    -webkit-transform: translateY(-400px);
-    transform: translateY(-400px);
-    -webkit-transition: 798ms ease-in-out 660ms;
-    transition: 798ms ease-in-out 660ms;
+  display: inline-block;
+  -webkit-transform: translateY(-400px);
+          transform: translateY(-400px);
+  -webkit-transition: 657ms ease-in-out 521ms;
+  transition: 657ms ease-in-out 521ms;
 }
-
 section#content .project span:nth-child(2n+1) {
-    -webkit-transition: 986ms ease-in-out 627ms;
-    transition: 986ms ease-in-out 627ms;
+  -webkit-transition: 1197ms ease-in-out 430ms;
+  transition: 1197ms ease-in-out 430ms;
 }
-
 section#content .project span:nth-child(3n+2) {
-    -webkit-transition: 578ms ease-in-out 941ms;
-    transition: 578ms ease-in-out 941ms;
+  -webkit-transition: 883ms ease-in-out 705ms;
+  transition: 883ms ease-in-out 705ms;
 }
-
 section#content .project span:nth-child(5n+7) {
-    -webkit-transition: 1149ms ease-in-out 932ms;
-    transition: 1149ms ease-in-out 932ms;
+  -webkit-transition: 1108ms ease-in-out 810ms;
+  transition: 1108ms ease-in-out 810ms;
 }
-
 section#content .project span:nth-child(7n+5) {
-    -webkit-transition: 888ms ease-in-out 806ms;
-    transition: 888ms ease-in-out 806ms;
+  -webkit-transition: 991ms ease-in-out 35ms;
+  transition: 991ms ease-in-out 35ms;
 }
-
 section#content .project span:nth-child(11n+3) {
-    -webkit-transition: 1388ms ease-in-out 765ms;
-    transition: 1388ms ease-in-out 765ms;
+  -webkit-transition: 1424ms ease-in-out 422ms;
+  transition: 1424ms ease-in-out 422ms;
 }
-
 section#content .project span:nth-child(13n+5) {
-    -webkit-transition: 563ms ease-in-out 857ms;
-    transition: 563ms ease-in-out 857ms;
+  -webkit-transition: 1342ms ease-in-out 1ms;
+  transition: 1342ms ease-in-out 1ms;
 }
 
 section#content .project.active {
