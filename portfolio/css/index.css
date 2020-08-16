@@ -1,0 +1,229 @@
+html,
+body {
+    overflow: hidden;
+}
+
+body {
+    background: #fafafa;
+}
+
+
+*,
+p,
+span,
+div {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.container-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+.container-head-links {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.about-me {
+    width: 120px;
+    text-align: center;
+}
+
+#all-projects {
+    width: 120px;
+    text-align: center;
+}
+
+#all-projects:hover {
+    font-weight: 800;
+}
+
+#about-me:hover {
+    font-weight: 800;
+}
+
+.head-link {
+    color: #333333;
+}
+
+.container-body {}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.logo:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+a {
+    text-decoration: none;
+    color: #333333;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+div.container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+section#content {
+    /* display: flex; */
+    /* align-items: center; */
+    position: fixed;
+    width: 80%;
+    margin-left: 10%;
+    height: 100%;
+}
+
+section#content .project {
+    display: flex;
+    /* top: 150px; */
+    top: 25%;
+    position: relative;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+}
+
+section#content .project .col-left {
+    position: absolute;
+    /* left: 40px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+section#content .project .col-right {
+    position: absolute;
+    right: 40px;
+}
+
+section#content .project span {
+    display: inline-block;
+    -webkit-transform: translateY(-400px);
+    transform: translateY(-400px);
+    -webkit-transition: 798ms ease-in-out 660ms;
+    transition: 798ms ease-in-out 660ms;
+}
+
+section#content .project span:nth-child(2n+1) {
+    -webkit-transition: 986ms ease-in-out 627ms;
+    transition: 986ms ease-in-out 627ms;
+}
+
+section#content .project span:nth-child(3n+2) {
+    -webkit-transition: 578ms ease-in-out 941ms;
+    transition: 578ms ease-in-out 941ms;
+}
+
+section#content .project span:nth-child(5n+7) {
+    -webkit-transition: 1149ms ease-in-out 932ms;
+    transition: 1149ms ease-in-out 932ms;
+}
+
+section#content .project span:nth-child(7n+5) {
+    -webkit-transition: 888ms ease-in-out 806ms;
+    transition: 888ms ease-in-out 806ms;
+}
+
+section#content .project span:nth-child(11n+3) {
+    -webkit-transition: 1388ms ease-in-out 765ms;
+    transition: 1388ms ease-in-out 765ms;
+}
+
+section#content .project span:nth-child(13n+5) {
+    -webkit-transition: 563ms ease-in-out 857ms;
+    transition: 563ms ease-in-out 857ms;
+}
+
+section#content .project.active {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition: 1s ease-in-out 0s;
+    transition: 1s ease-in-out 0s;
+}
+
+section#content .project.active span {
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+}
+
+section#content .project.disappear {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition: 1s ease-in-out 0s;
+    transition: 1s ease-in-out 0s;
+}
+
+section#content .project.disappear span {
+    -webkit-transform: translateY(500px);
+    transform: translateY(500px);
+}
+
+@-webkit-keyframes scrolldown {
+    to {
+        -webkit-transform: translatey(10px);
+        transform: translatey(10px);
+        color: #666;
+    }
+}
+
+@keyframes scrolldown {
+    to {
+        -webkit-transform: translatey(10px);
+        transform: translatey(10px);
+        color: #666;
+    }
+}
+
+.view-case-study {
+    text-decoration: underline;
+    margin-top: 16px;
+}
+.view-case-study:hover {
+    background-color: #333;
+    cursor: pointer;
+    color: #fff;
+}
+
+.tag-text {
+    font-size: 16px;
+    text-align: center;
+}
+.title-text {
+    font-size: 24px;
+    font-weight: 800;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+.des-text {
+    font-size: 14px;
+    text-align: center;
+}
