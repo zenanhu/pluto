@@ -77,8 +77,7 @@ function load() {
   var tag=document.getElementsByClassName("tag-text");
   var title=document.getElementsByClassName("title-text");
   var des=document.getElementsByClassName("des-text");
-  var viewCaseStudy=document.getElementsByClassName("view-case-study");
-  pIndex=tag.length-1;
+  pIndex = projectCount - 1;
   for(var i=0; i < projectCount; i++){
     tag[i].innerHTML=addSpan(tag[i].innerHTML);
     title[i].innerHTML=addSpan(title[i].innerHTML);

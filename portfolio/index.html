@@ -18,17 +18,26 @@
             <section id="content">
                 <div class="project active" style="top: 35%;">
                     <div class="col-left">
+                        <div class="container-text">
+                        <p class="tag-text">0-New York, USA</p>
                         <p class="title-text">Hello, I'm Líu, Yìtíng</p>
+                        </div>
                     </div>
                 </div>
                 <div class="project" style="top: 35%;">
                     <div class="col-left">
+                        <div class="container-text">
+                        <p class="tag-text">0-New York, USA</p>
                         <p class="title-text">Welcome!</p>
+                        </div>
                     </div>
                 </div>
                 <div class="project" style="top: 35%;">
                     <div class="col-left">      
+                        <div class="container-text">
+                        <p class="tag-text">0-New York, USA</p>
                         <p class="title-text">Hello, Welcome!</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -55,11 +64,14 @@ var index=0; //new project count
 var pIndex; //previous project count
 
 function load() {
+  var tag=document.getElementsByClassName("tag-text");
   var title=document.getElementsByClassName("title-text");
   pIndex=projectCount - 1;
   for(var i=0; i < projectCount; i++){
+    tag[i].innerHTML=addSpan(tag[i].innerHTML);
     title[i].innerHTML=addSpan(title[i].innerHTML);
   }
+//   index = projectCount - 1;
   repeat();
 }
 

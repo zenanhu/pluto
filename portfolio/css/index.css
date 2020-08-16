@@ -290,3 +290,8 @@ section#content .project.disappear span {
 .text-skip:hover {
     cursor: pointer;
 }
+.container-text {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
