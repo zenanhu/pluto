@@ -46,11 +46,13 @@ div {
 .about-me {
     width: 120px;
     text-align: center;
+    color: #333;
 }
 
 #all-projects {
     width: 120px;
     text-align: center;
+    color: #333;
 }
 
 #all-projects:hover {
@@ -71,6 +73,7 @@ div {
     font-size: 24px;
     font-weight: 800;
     letter-spacing: 1.5px;
+    color: #333;
 }
 
 .logo:hover {
@@ -117,11 +120,6 @@ section#content .project .col-left {
     flex-direction: column;
     align-items: center;
     width: 100%;
-}
-
-section#content .project .col-right {
-    position: absolute;
-    right: 40px;
 }
 
 section#content .project span {
@@ -205,6 +203,7 @@ section#content .project.disappear span {
 .view-case-study {
     text-decoration: underline;
     margin-top: 16px;
+    color: #333;
 }
 .view-case-study:hover {
     background-color: #333;
@@ -213,10 +212,12 @@ section#content .project.disappear span {
 }
 
 .tag-text {
+    color: #333;
     font-size: 16px;
     text-align: center;
 }
 .title-text {
+    color: #333;
     font-size: 24px;
     font-weight: 800;
     margin-top: 8px;
@@ -224,6 +225,7 @@ section#content .project.disappear span {
     text-align: center;
 }
 .des-text {
+    color: #333;
     font-size: 14px;
     text-align: center;
 }

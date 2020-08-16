@@ -54,10 +54,12 @@
         } 
 
         (function() {
-           
+
+var projects=document.getElementsByClassName("project");
+var projectCount = projects.length;
 
 window.addEventListener('load',load);
-window.addEventListener('wheel',throttle(scroll,2000));
+window.addEventListener('wheel',throttle(scroll, 2000));
 
 
 var index=0; //new project count
@@ -69,7 +71,7 @@ function load() {
   var des=document.getElementsByClassName("des-text");
   var viewCaseStudy=document.getElementsByClassName("view-case-study");
   pIndex=tag.length-1;
-  for(var i=0; i<3; i++){
+  for(var i=0; i < projectCount; i++){
     tag[i].innerHTML=addSpan(tag[i].innerHTML);
     title[i].innerHTML=addSpan(title[i].innerHTML);
     des[i].innerHTML=addSpan(des[i].innerHTML);
@@ -85,7 +87,6 @@ function addSpan(str){
   return newStr;
 }
 
-var projects=document.getElementsByClassName("project");
 function updateProject(){
   projects[index].classList.add("active");
   projects[pIndex].classList.remove("active");
@@ -93,7 +94,6 @@ function updateProject(){
   setTimeout(function(){
     projects[pIndex].classList.remove("disappear");
   },1500);
-  
 }
 
 function throttle(fn, wait) {
@@ -107,8 +107,8 @@ function throttle(fn, wait) {
 }
 
 function scroll(){
-  pIndex=index;
-  if(index<projects.length-1) index++;
+  pIndex = index;
+  if(index < projects.length-1) index++;
   else index=0;
   updateProject();
 }
