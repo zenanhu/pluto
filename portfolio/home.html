@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <title>Yiting Liu †_º Portfolio</title>
 
-    <link rel="stylesheet" href="./css/index.css" />
-    <link
+    <link rel="stylesheet" href="./css/home.css" />
+    <!-- <link
       href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,800&display=swap"
       rel="stylesheet"
-    />
+    /> -->
   </head>
   <body>
     <div class="container-head">
@@ -21,7 +21,7 @@
     <div class="container-body">
         <div class="container">
             <section id="content">
-                <div class="project active">
+                <div class="project current">
                     <div class="col-left">
                         <p class="tag-text">0-New York, USA</p>
                         <p class="title-text">Top of the Rock Observation Deck</p>
@@ -29,7 +29,7 @@
                         <span style="display: flex;"><a href="./welcome.html" class="view-case-study">View case study</a></span>
                     </div>
                 </div>
-                <div class="project">
+                <div class="project next">
                     <div class="col-left">
                         <p class="tag-text">1-London, UK</p>
                         <p class="title-text">Buckingham Palace</p>
@@ -37,7 +37,7 @@
                         <span style="display: flex;"><a href="https://www.google.com" class="view-case-study">View case study</a></span>
                     </div>
                 </div>
-                <div class="project">
+                <div class="project previous">
                     <div class="col-left">      
                         <p class="tag-text">2-Shanghai, China</p>
                         <p class="title-text">Shanghai's Promenade: The Bund</p>
@@ -66,18 +66,15 @@
 var projects=document.getElementsByClassName("project");
 var projectCount = projects.length;
 
-window.addEventListener('load',load);
-window.addEventListener('wheel',throttle(scroll, 2000));
+window.addEventListener('load', load);
+window.addEventListener('wheel', throttle(scroll, 2000));
 
-
-var index=0; //new project count
-var pIndex; //previous project count
+var index = 0; //new project count
 
 function load() {
   var tag=document.getElementsByClassName("tag-text");
   var title=document.getElementsByClassName("title-text");
   var des=document.getElementsByClassName("des-text");
-  pIndex = projectCount - 1;
   for(var i=0; i < projectCount; i++){
     tag[i].innerHTML=addSpan(tag[i].innerHTML);
     title[i].innerHTML=addSpan(title[i].innerHTML);
@@ -94,30 +91,58 @@ function addSpan(str){
   return newStr;
 }
 
-function updateProject(){
-  projects[index].classList.add("active");
-  projects[pIndex].classList.remove("active");
-  projects[pIndex].classList.add("disappear");
-  setTimeout(function(){
-    projects[pIndex].classList.remove("disappear");
-  },1500);
+function updateProject(down) {
+  projects[index].classList.remove("current");
+  projects[index].classList.remove("previous");
+  projects[index].classList.remove("next");
+  projects[index].classList.remove("visible");
+  projects[index].classList.add("current");
+
+  let previous = (index - 1 + projectCount) % projectCount;
+  let next = (index + 1 + projectCount) % projectCount;
+
+  projects[previous].classList.remove("current");
+  projects[previous].classList.remove("previous");
+  projects[previous].classList.remove("next");
+  projects[previous].classList.remove("visible");
+  projects[previous].classList.add("previous");
+  if (down) {
+    projects[previous].classList.add("visible");
+  }
+
+  projects[next].classList.remove("current");
+  projects[next].classList.remove("previous");
+  projects[next].classList.remove("next");
+  projects[next].classList.remove("visible");
+  projects[next].classList.add("next");
+  if (!down) {
+    projects[next].classList.add("visible");
+  }
+  // setTimeout(function(){
+  //   projects[pIndex].classList.remove("disappear");
+  // },1500);
 }
 
 function throttle(fn, wait) {
   var time = Date.now();
-  return function() {
+  return function(event) {
     if ((time + wait - Date.now()) < 0) {
-      fn();
+      fn(event);
       time = Date.now();
     }
   }
 }
 
-function scroll(){
-  pIndex = index;
-  if(index < projects.length-1) index++;
-  else index=0;
-  updateProject();
+function scroll(event){
+  if (event.deltaY > 0) {
+    // Scroll down
+    index = (index + 1) % projectCount;
+    updateProject(true);
+  } else {
+    // Scroll up
+    index = (index - 1 + projectCount) % projectCount;
+    updateProject(false);
+  }
 }
 
         })();
