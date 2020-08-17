@@ -126,6 +126,9 @@ section#content .project.previous span {
   -webkit-transition: 1s ease-in-out 0s;
   transition: 1s ease-in-out 0s;
 }
+section#content .project.current {
+  z-index: 100;
+}
 section#content .project.current span {
   display: inline-block;
   -webkit-transform: translateY(0px);
