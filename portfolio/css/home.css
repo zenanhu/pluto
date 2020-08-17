@@ -122,8 +122,8 @@ section#content .project.visible {
 
 section#content .project.previous span {
   display: inline-block;
-  -webkit-transform: translateY(-500px);
-          transform: translateY(-500px);
+  -webkit-transform: translateY(-600px);
+          transform: translateY(-600px);
   -webkit-transition: 1s ease-in-out 0s;
   transition: 1s ease-in-out 0s;
 }
@@ -140,8 +140,8 @@ section#content .project.current span {
 }
 section#content .project.next span {
   display: inline-block;
-  -webkit-transform: translateY(500px);
-          transform: translateY(500px);
+  -webkit-transform: translateY(600px);
+          transform: translateY(600px);
   -webkit-transition: 1s ease-in-out 0s;
   transition: 1s ease-in-out 0s;
 }
