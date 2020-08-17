@@ -223,6 +223,13 @@ section#content .project.current span {
   bottom: 0;
   text-align: center;
 }
+.artboard .mouse-down {
+  width: 60px;
+  margin: auto;
+}
+.artboard .mouse-down:hover {
+  cursor: pointer;
+}
 .artboard svg rect#wheel {
   animation: move 2500ms ease-out 0s infinite normal forwards running;
 }
