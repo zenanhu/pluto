@@ -41,6 +41,7 @@ div {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    visibility: hidden;
 }
 
 .about-me {
@@ -276,4 +277,82 @@ section#content .project.current span {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
+}
+
+
+
+#menu {
+  position: fixed;
+  right: 24px;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+}
+#menu div.menu_item {
+  height: 24px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+span.tooltip {
+  margin-right: 12px;
+  visibility: hidden;
+  opacity: 0;
+  transition: 400ms ease-in-out 0s;
+}
+
+#menu span.tooltip {
+  line-height: 24px;
+}
+
+a:hover + span.tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translatex(6px);
+}
+
+a svg {
+  transition: 400ms ease-in-out 0s;
+  opacity: 0.2;
+}
+#menu a:hover svg {
+  transform: rotate(180deg);
+  transition: 800ms ease-in-out 0s;
+  opacity: 1;
+}
+
+#contact {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+#contact div.contact_item {
+  height: 18px;
+  margin-bottom: 4px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#contact .tooltip {
+  line-height: 18px;
+}
+#contact a:hover svg {
+  transition: 800ms ease-in-out 0s;
+  opacity: 1;
+}
+
+a#link_to_twitter:hover svg {
+  fill: #1da1f2;
+}
+
+a#link_to_codepen:hover svg {
+  fill: #1a1919;
+}
+
+a#link_to_linkedin:hover svg {
+  fill: #0073b0;
 }
