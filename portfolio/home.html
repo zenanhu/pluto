@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="artboard">
-      <div class="mouse-down" onclick="scrollDown();">
+      <div class="mouse-down" onclick="goDown();">
         <svg width="14px" height="38px" viewBox="0 0 14 38">
             <rect stroke="#333333" x="1" fill="none" y="1" width="12" height="20" rx="6"></rect>
             <rect id="wheel" fill="#333333" x="6" y="5" width="2" height="4" rx="1"></rect>
@@ -182,6 +182,13 @@ function throttle(fn, wait) {
   }
 }
 
+var time = 0;
+function goDown() {
+  if (time + 2000 - Date.now() < 0) {
+    scrollDown();
+  }
+  time = Date.now();
+}
 function scrollDown() {
     index = (index + 1) % projectCount;
     updateProject(true);
